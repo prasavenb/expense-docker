@@ -18,5 +18,7 @@ services:
   frontend:
     image: venkat18b/frontend:v1
     container_name: frontend
+    ports:
+      - 80:80
     depends_on:
       - backend
