@@ -1,0 +1,22 @@
+version: '3'
+networks:
+  expense:
+volumes:
+  mysql:
+services:
+  mysql:
+    image: venkat18b/mysql:v1 
+    container_name: mysql
+    volumes:
+      -mysql:/var/lib/mysql
+  backend:
+    image: venkat18b/backend:v1
+    container_name: backend
+    command: sh -c "sleep 10 && node /opt/server/index.js"
+    depends_on:
+      - mysql
+  frontend:
+    image: venkat18b/frontend:v1
+    container_name: frontend
+    depends_on:
+      - backend
